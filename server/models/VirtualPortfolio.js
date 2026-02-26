@@ -32,6 +32,4 @@ const portfolioSchema = new mongoose.Schema({
   profitLossPercent: { type: Number, default: 0 },
 }, { timestamps: true });
 
-portfolioSchema.index({ userId: 1 });
-
 export default mongoose.model('VirtualPortfolio', portfolioSchema);

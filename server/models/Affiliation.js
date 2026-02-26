@@ -17,8 +17,6 @@ const affiliationSchema = new mongoose.Schema({
   commissionRate: { type: Number, default: 20 }, // 20%
 }, { timestamps: true });
 
-affiliationSchema.index({ code: 1 });
-
 // Generer un code unique
 affiliationSchema.statics.generateCode = function(userName) {
   const base = userName.replace(/[^a-zA-Z]/g, '').toUpperCase().substring(0, 4);
