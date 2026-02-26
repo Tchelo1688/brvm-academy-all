@@ -40,6 +40,23 @@ router.get('/', async (req, res) => {
 });
 
 // =============================================
+// GET /api/tutorials/admin/all — Tous les tutoriels (admin view)
+// IMPORTANT: Doit etre AVANT /:id pour ne pas etre intercepte
+// =============================================
+router.get('/admin/all', requireRole('instructor', 'moderator', 'admin'), async (req, res) => {
+  try {
+    let filter = {};
+    if (req.user.role === 'instructor') {
+      filter.author = req.user._id;
+    }
+    const tutorials = await Tutorial.find(filter).sort({ createdAt: -1 }).lean();
+    res.json(tutorials);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// =============================================
 // GET /api/tutorials/:id — Detail d'un tutoriel
 // =============================================
 router.get('/:id', async (req, res) => {
@@ -228,24 +245,6 @@ router.delete('/:id/pdf/:pdfId', requireRole('instructor', 'moderator', 'admin')
     await tutorial.save();
 
     res.json({ message: 'PDF supprime', tutorial });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// =============================================
-// GET /api/tutorials/admin/all — Tous les tutoriels (admin view)
-// =============================================
-router.get('/admin/all', requireRole('instructor', 'moderator', 'admin'), async (req, res) => {
-  try {
-    let filter = {};
-    // Instructor ne voit que ses tutoriels
-    if (req.user.role === 'instructor') {
-      filter.author = req.user._id;
-    }
-
-    const tutorials = await Tutorial.find(filter).sort({ createdAt: -1 }).lean();
-    res.json(tutorials);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -24,6 +24,10 @@ import PaymentResult from './pages/PaymentResult';
 import Forum from './pages/Forum';
 import Webinars from './pages/Webinars';
 import Affiliation from './pages/Affiliation';
+import CGU from './pages/CGU';
+import Confidentialite from './pages/Confidentialite';
+import MentionsLegales from './pages/MentionsLegales';
+import Contact from './pages/Contact';
 
 // Route protégée — redirige vers login si non connecté
 function ProtectedRoute({ children }) {
@@ -81,6 +85,10 @@ function App() {
             <Route path="pricing" element={<Pricing />} />
             <Route path="payment/success" element={<PaymentResult type="success" />} />
             <Route path="payment/cancel" element={<PaymentResult type="cancel" />} />
+            <Route path="cgu" element={<CGU />} />
+            <Route path="confidentialite" element={<Confidentialite />} />
+            <Route path="mentions-legales" element={<MentionsLegales />} />
+            <Route path="contact" element={<Contact />} />
           </Route>
 
           {/* Pages admin protegees */}

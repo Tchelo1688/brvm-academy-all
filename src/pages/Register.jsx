@@ -72,6 +72,11 @@ export default function Register() {
           Déjà un compte ?{' '}
           <Link to="/login" className="text-gold hover:underline font-semibold">Se connecter</Link>
         </p>
+
+        <div className="mt-8 pt-4 border-t border-night-border text-center text-[10px] text-gray-600">
+          <p>&copy; {new Date().getFullYear()} BRVM Academy. Tous droits reserves.</p>
+          <p className="mt-1">En vous inscrivant, vous acceptez nos <a href="/cgu" className="text-gold hover:underline">CGU</a> et notre <a href="/confidentialite" className="text-gold hover:underline">Politique de Confidentialite</a>.</p>
+        </div>
       </div>
     </div>
   );

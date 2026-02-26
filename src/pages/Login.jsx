@@ -156,6 +156,11 @@ export default function Login() {
             Pas encore de compte ?{' '}
             <Link to="/register" className="text-gold hover:underline font-semibold">S'inscrire gratuitement</Link>
           </p>
+
+          <div className="mt-8 pt-4 border-t border-night-border text-center text-[10px] text-gray-600">
+            <p>&copy; {new Date().getFullYear()} BRVM Academy. Tous droits reserves.</p>
+            <p className="mt-1">Plateforme educative independante — Non affiliee a la BRVM.</p>
+          </div>
         </div>
       </div>
     </div>

@@ -85,8 +85,8 @@ const registerLimiter = rateLimit({
 
 // 4. Body parser avec limite de taille
 //    Empeche les attaques par payload volumineux
-app.use(express.json({ limit: '10kb' }));
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // 5. Mongo Sanitize — Anti injection NoSQL
 //    Supprime les $ et . des requetes pour empecher les injections MongoDB

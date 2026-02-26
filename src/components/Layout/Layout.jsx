@@ -241,13 +241,25 @@ export default function Layout() {
           <Outlet />
         </main>
 
-        {/* FOOTER */}
-        <footer className="border-t border-night-border px-8 py-5 flex flex-wrap items-center justify-between text-xs text-gray-500 gap-4">
-          <span>© 2026 BRVM Academy — Formation Trading Afrique de l'Ouest</span>
-          <div className="flex gap-5">
-            <a href="#" className="hover:text-gold transition-colors">Conditions</a>
-            <a href="#" className="hover:text-gold transition-colors">Confidentialité</a>
-            <a href="#" className="hover:text-gold transition-colors">Contact</a>
+        {/* FOOTER COPYRIGHT */}
+        <footer className="border-t border-night-border px-6 lg:px-8 py-6 text-xs text-gray-500">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-gold font-bold text-sm">BRVM</span>
+              <span className="text-gray-600">|</span>
+              <span>&copy; {new Date().getFullYear()} BRVM Academy. Tous droits reserves.</span>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <a href="/cgu" className="hover:text-gold transition-colors">Conditions Generales</a>
+              <a href="/confidentialite" className="hover:text-gold transition-colors">Politique de Confidentialite</a>
+              <a href="/mentions-legales" className="hover:text-gold transition-colors">Mentions Legales</a>
+              <a href="/contact" className="hover:text-gold transition-colors">Contact</a>
+            </div>
+          </div>
+          <div className="mt-3 pt-3 border-t border-night-border/50 text-center text-[10px] text-gray-600">
+            BRVM Academy est une plateforme educative independante. Elle n'est pas affiliee a la Bourse Regionale des Valeurs Mobilieres (BRVM).
+            Les informations fournies sont a titre educatif uniquement et ne constituent pas des conseils en investissement.
+            Toute reproduction, meme partielle, du contenu est interdite sans autorisation ecrite prealable.
           </div>
         </footer>
       </div>
