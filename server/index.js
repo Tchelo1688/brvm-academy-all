@@ -38,19 +38,23 @@ app.use(helmet({
 }));
 
 // 2. CORS — Controle d'origine
-//    Seul le frontend autorise peut appeler l'API
 const allowedOrigins = [
   process.env.CLIENT_URL || 'http://localhost:5173',
+  process.env.SERVER_URL,
   'http://localhost:5173',
   'http://localhost:3000',
-];
+  'http://localhost:5000',
+].filter(Boolean);
+
 app.use(cors({
   origin: function (origin, callback) {
-    // Autorise les requetes sans origin (mobile, Postman, etc.)
+    // Autorise les requetes sans origin (same-origin, mobile, Postman)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Non autorise par CORS'));
+      // En production sur Render, same-origin n'a pas d'origin header
+      if (isProd) callback(null, true);
+      else callback(new Error('Non autorise par CORS'));
     }
   },
   credentials: true,

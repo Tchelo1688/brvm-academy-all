@@ -5,7 +5,16 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-// Intercepteur pour gérer les erreurs 401 (token expiré)
+// Intercepteur requete — ajouter le token JWT
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('brvm_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Intercepteur reponse — gerer les erreurs 401
 api.interceptors.response.use(
   (response) => response,
   (error) => {
