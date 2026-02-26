@@ -1,0 +1,47 @@
+{
+  "name": "brvm-academy",
+  "version": "1.0.0",
+  "description": "Plateforme E-Learning Trading BRVM - Afrique de l'Ouest",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "vite",
+    "dev:server": "nodemon server/index.js",
+    "seed": "node server/seed.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "react-player": "^2.13.0",
+    "react-icons": "^4.12.0",
+    "react-hot-toast": "^2.4.1",
+    "axios": "^1.6.2",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "cloudinary": "^1.41.0",
+    "nodemailer": "^6.9.7",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.4",
+    "express-mongo-sanitize": "^2.2.0",
+    "hpp": "^0.2.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "vite": "^5.0.4",
+    "tailwindcss": "^3.3.6",
+    "postcss": "^8.4.32",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2"
+  }
+}
