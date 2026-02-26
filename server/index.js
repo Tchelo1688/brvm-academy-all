@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import mongoSanitize from 'express-mongo-sanitize';
 import hpp from 'hpp';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/auth.js';
 import courseRoutes from './routes/courses.js';
@@ -132,13 +134,30 @@ app.get('/api/health', (req, res) => res.json({
 }));
 
 // =============================================
-// GESTION D'ERREURS
+// FRONTEND — Servir le build React en production
 // =============================================
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Route 404
-app.use((req, res) => {
-  res.status(404).json({ message: 'Route introuvable' });
-});
+if (process.env.NODE_ENV === 'production') {
+  // Servir les fichiers statiques du build
+  app.use(express.static(path.join(__dirname, '..', 'dist')));
+
+  // Toute route non-API renvoie index.html (pour React Router)
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
+  });
+} else {
+  // En dev, juste un message
+  app.get('/', (req, res) => {
+    res.json({ message: 'BRVM Academy API — Mode developpement. Frontend sur http://localhost:5173' });
+  });
+
+  // Route 404 API uniquement en dev
+  app.use((req, res) => {
+    res.status(404).json({ message: 'Route introuvable' });
+  });
+}
 
 // Erreur globale
 app.use((err, req, res, next) => {
